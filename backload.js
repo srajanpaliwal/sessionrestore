@@ -1,5 +1,5 @@
 var urls=new Array();
-urls=new Array()
+urls=new Array();
 var extensionid='Enter extension ID here';
 	chrome.windows.getAll({populate: true}, function(winarray)
 	{
@@ -13,7 +13,11 @@ var extensionid='Enter extension ID here';
 					var j=0;
 					for(j=0;j<tabsarray.length;j++)
 					{
-							urls.push('chrome-extension://'+extensionid+'/newtab.html');
+							urls.push('chrome-extension://'+extensionid+'/newtab.html#lol');
+					}
+					if(winarray[0].tabs.length==1&&!(winarray[0].tabs[0].url.match(/chrome\u003A\u002F\u002F/g)))
+					{
+						urls.push(winarray[0].tabs[0].url);
 					}
 					chrome.windows.create({url:urls,focused:true},function(window)
 					{
@@ -43,6 +47,10 @@ chrome.windows.onCreated.addListener(function(window)
 					for(j=0;j<tabsarray.length;j++)
 					{
 						urls.push('chrome-extension://'+extensionid+'/newtab.html');
+					}
+					if(winarray[0].tabs.length==1&&!(winarray[0].tabs[0].url.match(/chrome\u003A\u002F\u002F/g)))
+					{
+						urls.push(winarray[0].tabs[0].url);
 					}
 					chrome.windows.create({url:urls,focused:true},function(window)
 					{

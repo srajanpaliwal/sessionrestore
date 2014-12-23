@@ -1,10 +1,8 @@
-var tab_id = null;
 var tab_pos=null;
 var url=null;
 var tabinfo;
 window.onload = function() {
 chrome.tabs.getCurrent(function(tab) {
-	tab_id = tab.id;
 	tab_pos=tab.index;
 });
 chrome.storage.local.get('tabs',function(items)
