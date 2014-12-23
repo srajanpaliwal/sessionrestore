@@ -1,6 +1,7 @@
 var urls=new Array();
 urls=new Array();
-var extensionid='Enter extension ID here';
+var data={title:'',url:'',load:''};
+var extensionid='kkegendjkldolnjfcnjmjddodaddldgg';
 	chrome.windows.getAll({populate: true}, function(winarray)
 	{
 		if(winarray.length==1)
@@ -13,7 +14,14 @@ var extensionid='Enter extension ID here';
 					var j=0;
 					for(j=0;j<tabsarray.length;j++)
 					{
-							urls.push('chrome-extension://'+extensionid+'/newtab.html#lol');
+						data.title=tabsarray[j].title;
+						data.url=tabsarray[j].url;
+						if(j==0)
+						{
+							data.load='1';
+						}
+						urls.push('chrome-extension://'+extensionid+'/newtab.html##'+JSON.stringify(data));
+						data.load='';
 					}
 					if(winarray[0].tabs.length==1&&!(winarray[0].tabs[0].url.match(/chrome\u003A\u002F\u002F/g)))
 					{
@@ -28,7 +36,6 @@ var extensionid='Enter extension ID here';
 				chrome.alarms.create('loadscript', {delayInMinutes:1});
 			});
 		}
-
 	});
 chrome.windows.onCreated.addListener(function(window)
 {
@@ -43,10 +50,16 @@ chrome.windows.onCreated.addListener(function(window)
 				if(typeof(tabsarray) != "undefined")
 				{
 					var j=0;
-					totaltabs=tabsarray.length;
 					for(j=0;j<tabsarray.length;j++)
 					{
-						urls.push('chrome-extension://'+extensionid+'/newtab.html');
+						data.title=tabsarray[j].title;
+						data.url=tabsarray[j].url;
+						if(j==0)
+						{
+							data.load='1';
+						}
+						urls.push('chrome-extension://'+extensionid+'/newtab.html##'+JSON.stringify(data));
+						data.load='';
 					}
 					if(winarray[0].tabs.length==1&&!(winarray[0].tabs[0].url.match(/chrome\u003A\u002F\u002F/g)))
 					{

@@ -3,7 +3,7 @@ var lastwindow=true;
 var tabList = new Array();
 var enabled=true;
 urls=new Array();
-var extensionid='Enter extension ID here';
+var extensionid='kkegendjkldolnjfcnjmjddodaddldgg';
 chrome.tabs.onUpdated.addListener(function(tabid,info)
 {
 	if(lastwindow&&enabled)
@@ -21,17 +21,13 @@ chrome.tabs.onUpdated.addListener(function(tabid,info)
 						var j=0;
 							for(j=0;j<tabsarray.length;j++)
 						{
-							if(tabsarray[j].url=='chrome-extension://'+extensionid+'/newtab.html')
-							{
-								tabList.push({title:tabsarray[j].title});
-							}
-							else if(tabsarray[j].url.match(/chrome\u003A\u002F\u002F/g)||tabsarray[j].url.match(/chrome\u002Dextension\u003A\u002F\u002F/g))
+							if(tabsarray[j].url.match(/chrome\u003A\u002F\u002F/g))
 							{
 								continue;
 							}
 							else
 							{
-								tabList.push({title:tabsarray[j].title+'##'+tabsarray[j].url});
+								tabList.push({title:tabsarray[j].title,url:tabsarray[j].url});
 							}
 
 						}

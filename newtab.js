@@ -1,22 +1,19 @@
-var tab_pos=null;
+var data=null;
 var url=null;
 var tabinfo;
 window.onload = function() {
 chrome.tabs.getCurrent(function(tab) {
-	tab_pos=tab.index;
-});
-chrome.storage.local.get('tabs',function(items)
-{
-	var tabsarray=items['tabs'];
-	tabinfo=tabsarray[tab_pos].title.split('##');
-	url=tabinfo[1];
-	document.title= tabsarray[tab_pos].title;
+	var urljson=tab.url.split('##')[1];
+	console.log(urljson);
+	data=JSON.parse(urljson);
+	url=data.url;
+	document.title= data.title;
 	var icon =document.createElement("link");
 	icon.setAttribute('rel','icon');
 	icon.setAttribute('type','img/ico');
-	icon.setAttribute('href','chrome://favicon/'+tabinfo[1]);
+	icon.setAttribute('href','chrome://favicon/'+url);
 	document.getElementsByTagName('head')[0].appendChild(icon);
-	if(tab_pos==0)
+	if(data.load=='1')
 	{
 		window.location.href=url;
 	}
