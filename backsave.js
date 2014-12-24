@@ -1,12 +1,11 @@
 var nowindows=1;
 var lastwindow=true;
 var tabList = new Array();
-var enabled=true;
 urls=new Array();
 var extensionid='kkegendjkldolnjfcnjmjddodaddldgg';
 function savetab()
 {
-	if(lastwindow&&enabled)
+	if(lastwindow)
 	{
 		lastwindow=false;
 		chrome.windows.getAll({populate: true}, function(winarray)
@@ -47,16 +46,4 @@ function savetab()
 chrome.tabs.onUpdated.addListener(function(tabid,info)
 {
 	savetab();
-});
-chrome.windows.onCreated.addListener(function(window)
-{
-	enabled=false;
-	chrome.alarms.create('enablescript', {delayInMinutes:.1});
-});
-chrome.alarms.onAlarm.addListener(function (alarm)
-{
-	if(alarm.name=='enablescript')
-	{
-		enabled=true;
-	}
 });

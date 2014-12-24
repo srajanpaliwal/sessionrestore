@@ -2,7 +2,7 @@ var urls=new Array();
 urls=new Array();
 var data={title:'',url:'',load:false,pinned:false};
 var extensionid='kkegendjkldolnjfcnjmjddodaddldgg';
-function loadtab()
+function loadtab(winarray)
 {
 	if(winarray.length==1)
 	{
@@ -34,36 +34,34 @@ function loadtab()
 					chrome.windows.remove(winarray[0].id);
 				});
 			}
-			chrome.alarms.create('loadscript', {delayInMinutes:.1});
 		});
 	}
 }
 chrome.windows.getAll({populate: true}, function(winarray)
 {
-	loadtab();
+	loadtab(winarray);
+	addsave();
 });
 chrome.windows.onCreated.addListener(function(window)
 {
 	urls=new Array();
 	chrome.windows.getAll({populate: true}, function(winarray)
 	{
-		loadtab();
+		loadtab(winarray);
+		savetab();
 	});
 });
-chrome.alarms.onAlarm.addListener(function (alarm)
+function addsave()
 {
-	if(alarm.name=='loadscript')
+var s = document.createElement('script');
+	s.src = chrome.extension.getURL("backsave.js");
+	s.setAttribute("id", "exqwejkl");
+	s.onload = function() 
 	{
-		var s = document.createElement('script');
-		s.src = chrome.extension.getURL("backsave.js");
-		s.setAttribute("id", "exqwejkl");
-		s.onload = function() {
-			this.parentNode.removeChild(this);
-		};
-		document.head.appendChild(s);
-		
-	}
-});
+		this.parentNode.removeChild(this);
+	};
+	document.head.appendChild(s);	
+}
 chrome.runtime.onInstalled.addListener(function(details){
 	if(details.reason=="install")
 	{
