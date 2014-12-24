@@ -13,7 +13,11 @@ chrome.tabs.getCurrent(function(tab) {
 	icon.setAttribute('type','img/ico');
 	icon.setAttribute('href','chrome://favicon/'+url);
 	document.getElementsByTagName('head')[0].appendChild(icon);
-	if(data.load=='1')
+	if(data.pinned)
+	{
+		chrome.tabs.update(tab.id,{pinned:true});
+	}
+	if(data.load)
 	{
 		window.location.href=url;
 	}
