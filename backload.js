@@ -1,5 +1,4 @@
 var urls=new Array();
-urls=new Array();
 var data={title:'',url:'',load:false,pinned:false};
 var extensionid='kkegendjkldolnjfcnjmjddodaddldgg';
 function loadtab(winarray)
@@ -37,6 +36,17 @@ function loadtab(winarray)
 		});
 	}
 }
+function addsave()
+{
+var s = document.createElement('script');
+	s.src = chrome.extension.getURL("backsave.js");
+	s.setAttribute("id", "exqwejkl");
+	s.onload = function() 
+	{
+		this.parentNode.removeChild(this);
+	};
+	document.head.appendChild(s);	
+}
 chrome.windows.getAll({populate: true}, function(winarray)
 {
 	loadtab(winarray);
@@ -51,20 +61,11 @@ chrome.windows.onCreated.addListener(function(window)
 		savetab();
 	});
 });
-function addsave()
+chrome.runtime.onInstalled.addListener(function(details)
 {
-var s = document.createElement('script');
-	s.src = chrome.extension.getURL("backsave.js");
-	s.setAttribute("id", "exqwejkl");
-	s.onload = function() 
-	{
-		this.parentNode.removeChild(this);
-	};
-	document.head.appendChild(s);	
-}
-chrome.runtime.onInstalled.addListener(function(details){
 	if(details.reason=="install")
 	{
 		chrome.tabs.create({url:"options.html"});
+		addsave();
 	}
 } );

@@ -1,7 +1,5 @@
-var nowindows=1;
 var lastwindow=true;
 var tabList = new Array();
-urls=new Array();
 var extensionid='kkegendjkldolnjfcnjmjddodaddldgg';
 function savetab()
 {
