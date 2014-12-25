@@ -27,11 +27,23 @@ function loadtab(winarray)
 				{
 					urls.push(winarray[0].tabs[0].url);
 				}
-				chrome.windows.create({url:urls,focused:true},function(window)
+				for(j=1;j<winarray[0].tabs.length;j++)
 				{
-					chrome.windows.update(window.id, {state:"maximized"});
+					chrome.tabs.remove(winarray[0].tabs[j].id);
+				}
+				if (urls.length>0) 
+				{
+					chrome.tabs.update(winarray[0].tabs[0].id,{url:urls[0]});
+				}	
+				for(j=1;j<=urls.length;j++)
+				{
+					chrome.tabs.create({windowId:winarray[0].id,url:urls[j]});
+				}
+				/*chrome.windows.create({url:urls,focused:false},function(window)
+				{
+					chrome.windows.update(window.id, {focused:true,state:"maximized"});
 					chrome.windows.remove(winarray[0].id);
-				});
+				});*/
 			}
 		});
 	}

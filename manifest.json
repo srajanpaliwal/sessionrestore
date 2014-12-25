@@ -7,6 +7,14 @@
   "options_page": "options.html",
   "permissions":["tabs","<all_urls>","storage","alarms"],
   "icons": { "128": "main_icon2.png"},
+  "browser_action":{
+		"default_icon":
+		{
+		"38":"browseraction_icon.png"
+		},
+		"default_title": "Session restore",
+		"default_popup": "popup.html"
+  },
   "web_accessible_resources": [
 				"newtab.html",
 				"newtab.js",
