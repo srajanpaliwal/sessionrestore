@@ -1,6 +1,6 @@
 var urls=new Array();
 var data={title:'',url:'',load:false,pinned:false};
-var extensionid='kkegendjkldolnjfcnjmjddodaddldgg';
+var extensionid='Enter extensio ID here';
 function loadtab(winarray)
 {
 	if(winarray.length==1)
@@ -80,4 +80,4 @@ chrome.runtime.onInstalled.addListener(function(details)
 		chrome.tabs.create({url:"options.html"});
 		addsave();
 	}
-} );
+});
