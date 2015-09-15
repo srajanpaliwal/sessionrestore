@@ -66,12 +66,15 @@ chrome.windows.getAll({populate: true}, function(winarray)
 });
 chrome.windows.onCreated.addListener(function(window)
 {
-	urls=new Array();
-	chrome.windows.getAll({populate: true}, function(winarray)
+	if(window.type=="normal")
 	{
-		loadtab(winarray);
-		savetab();
-	});
+		urls=new Array();
+		chrome.windows.getAll({populate: true}, function(winarray)
+		{
+			loadtab(winarray);
+			savetab();
+		});
+	}
 });
 chrome.runtime.onInstalled.addListener(function(details)
 {
