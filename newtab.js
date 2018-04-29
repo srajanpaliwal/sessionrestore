@@ -5,7 +5,7 @@ window.onload = function()
 	chrome.tabs.getCurrent(function(tab) 
 	{
 		var urljson=tab.url.split('##')[1];
-		data=JSON.parse(urljson);
+		data=JSON.parse(decodeURI(urljson));
 		url=data.url;
 		document.title= data.title;
 		var icon =document.createElement("link");
