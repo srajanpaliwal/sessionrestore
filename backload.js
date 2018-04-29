@@ -1,6 +1,6 @@
 var urls=new Array();
 var data={title:'',url:'',load:false,pinned:false};
-var extensionid='Enter extensio ID here';
+var extensionid='Enter extension ID here';
 function loadtab(winarray)
 {
 	if(winarray.length==1)
