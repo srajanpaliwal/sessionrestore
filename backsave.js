@@ -1,6 +1,6 @@
 var lastwindow=true;
 var tabList = new Array();
-var extensionid='Enter extensio ID here';
+var extensionid='Enter extension ID here';
 function savetab()
 {
 	if(lastwindow)
@@ -25,7 +25,7 @@ function savetab()
 							}
 							else if(tabsarray[j].url.split('##')[1])
 							{
-								temptab=JSON.parse(tabsarray[j].url.split('##')[1]);
+								temptab=JSON.parse(decodeURI(tabsarray[j].url.split('##')[1]));
 								tabList.push({title:temptab.title,url:temptab.url,pinned:tabsarray[j].pinned});
 							}
 							else
