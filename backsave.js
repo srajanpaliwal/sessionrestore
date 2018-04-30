@@ -1,6 +1,6 @@
 var lastwindow=true;
 var tabList = new Array();
-var extensionid='Enter extensio ID here';
+var extensionid='Enter extension ID here';
 function savetab()
 {
 	if(lastwindow)
